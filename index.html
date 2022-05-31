@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+        <div id="cities">
+            <div id="citySearch">
+                <input type="text" id="searchInput" placeholder="Search for a city">
+                <input type="submit" value="Submit" id="btnGet">
+            </div>
+            <div id="cityFolder">
+
+            </div>
+        </div>
+        <div id="location">
+            <div id="currentCity">
+                <div class="weatherCard">
+                    <h3 class="weatherTitle">City</h3>
+                    <h4 class="weatherDate">Today</h4>
+                    <img
+                        src="http://openweathermap.org/img/wn/10d.png"
+                        class="weatherImage"
+                        alt="Weather description"
+                    />
+                    <div class="weatherBody">
+                        <p>Temp</p>
+                        <p>Wind</p>
+                        <p>Humidity</p>
+                        <p>UV Index</p>
+                    </div>
+                </div>
+            </div>
+            <div id="forecastSection">
+                <h2>5-Day Forecast</h2>
+                <div class="forecastCard">
+                    <h4>Date</h4>
+                    <img
+                        src="http://openweathermap.org/img/wn/10d.png"
+                        class="forecastImage"
+                        alt="Weather description"
+                    />
+                    <p>Temp</p>
+                    <p>Wind</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

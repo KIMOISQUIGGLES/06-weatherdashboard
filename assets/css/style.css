@@ -1,0 +1,38 @@
+* {
+    background: salmon;
+}
+
+body {
+    display: flex;
+
+}
+
+#cities {
+    display: flex;
+    width: 20vw;
+}
+
+#location {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+}
+
+#currentCity {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+#forecastSection {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.forecastCard {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
