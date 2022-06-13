@@ -1,13 +1,44 @@
+var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || []
+// var searchItem = document.querySelector(`.searchCity`);
+
+// searchItem.addEventListener("click", function(){
+//     console.log("this works");
+//     // USES THE VALUES FROM SEARCH TO FETCH WEATHER
+//     // THIS API CALL WILL SEARCH USING THE CITY
+//     let city = resp;
+//     let key = 'a062419f12b0eace43e957d3ea3afb84';
+//     let lang = 'en';
+//     let units = 'metric';
+//     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=${units}&lang=${lang}`;
+//     // FETCH THE WEATHER
+//     fetch(url)
+//         .then(resp => {
+//             if(!resp.ok) throw new Error(resp.statusText);
+//             return resp.json();
+//         })
+//         .then(data=>{
+//             // CALLS SHOWWEATHER TO DISPLAY DATA TO USER
+//             app.showWeather(data);
+//             // CALLS FETCH FORECAST TO MAKE A SECOND API CALL WITH LAT / LON
+//             app.fetchForecast(data);
+//         })
+//         .catch(console.err);
+// })
+
 const app = {
     init: () => {
         document
             // SEARCHES BY CITY 
             .getElementById('btnGet')
             .addEventListener('click', app.fetchWeather);
+        app.populateHistory();
+
+
     },
     fetchWeather: (ev) => {
         // USES THE VALUES FROM SEARCH TO FETCH WEATHER
         // THIS API CALL WILL SEARCH USING THE CITY
+        console.log(document.getElementById('searchInput').value);
         let city = document.getElementById('searchInput').value;
         let key = 'a062419f12b0eace43e957d3ea3afb84';
         let lang = 'en';
@@ -24,6 +55,7 @@ const app = {
                 app.showWeather(data);
                 // CALLS FETCH FORECAST TO MAKE A SECOND API CALL WITH LAT / LON
                 app.fetchForecast(data);
+                app.addSearch(data);
             })
             .catch(console.err);
     },
@@ -81,7 +113,7 @@ const app = {
                     class="forecastImage"
                     alt="${day.weather[0].description}"
                 />
-                <p>Temp: ${day.temp}</p>
+                <p>Temp: ${day.temp.day}</p>
                 <p>Wind: ${day.wind_speed} MPH</p>
                 <p>Humidity: ${day.humidity} %</p>
             </div>`
@@ -91,6 +123,24 @@ const app = {
         
 
     },
+    addSearch: (resp) => {
+        var citySearch = {
+            name: resp.name
+        }
+        searchHistory.push(citySearch)
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
+    },
+    populateHistory() {
+        for (i=0; i<searchHistory.length;i++){
+            var cityEl = document.createElement('p');
+            cityEl.className = "searchCity";
+            cityEl.textContent = searchHistory[i].name;
+            console.log(searchHistory[i].name)
+            var element = document.getElementById("cityFolder");
+            element.appendChild(cityEl);
+        }
+    },
+
 };
 
 app.init();

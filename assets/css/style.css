@@ -2,13 +2,14 @@
     background: salmon;
 }
 
-body {
+main {
     display: flex;
 
 }
 
 #cities {
     display: flex;
+    flex-direction: column;
     width: 20vw;
 }
 
